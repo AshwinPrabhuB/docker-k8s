@@ -1,0 +1,715 @@
+
+Local setup:
+
+asprabhu@Ashwins-MacBook-Pro kmaster % sudo virtualbox &
+
+asprabhu@Ashwins-MacBook-Pro kmaster % sudo vagrant up
+
+Bringing machine 'Master' up with 'virtualbox' provider...
+Bringing machine 'Worker1' up with 'virtualbox' provider...
+Bringing machine 'Worker2' up with 'virtualbox' provider...
+Bringing machine 'Worker3' up with 'virtualbox' provider...
+Bringing machine 'Worker4' up with 'virtualbox' provider...
+Bringing machine 'Worker5' up with 'virtualbox' provider...
+==> Master: Checking if box 'centos/7' version '2004.01' is up to date...
+==> Master: Clearing any previously set forwarded ports...
+==> Master: Fixed port collision for 22 => 2222. Now on port 2200.
+==> Master: Clearing any previously set network interfaces...
+==> Master: Preparing network interfaces based on configuration...
+    Master: Adapter 1: nat
+    Master: Adapter 2: hostonly
+==> Master: Forwarding ports...
+    Master: 22 (guest) => 2200 (host) (adapter 1)
+==> Master: Running 'pre-boot' VM customizations...
+==> Master: Booting VM...
+==> Master: Waiting for machine to boot. This may take a few minutes...
+    Master: SSH address: 127.0.0.1:2200
+    Master: SSH username: vagrant
+    Master: SSH auth method: private key
+    Master: 
+    Master: Vagrant insecure key detected. Vagrant will automatically replace
+    Master: this with a newly generated keypair for better security.
+    Master: 
+    Master: Inserting generated public key within guest...
+    Master: Removing insecure key from the guest if it's present...
+    Master: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> Master: Machine booted and ready!
+==> Master: Checking for guest additions in VM...
+    Master: No guest additions were detected on the base box for this VM! Guest
+    Master: additions are required for forwarded ports, shared folders, host only
+    Master: networking, and more. If SSH fails on this machine, please install
+    Master: the guest additions and repackage the box to continue.
+    Master: 
+    Master: This is not an error message; everything may continue to work properly,
+    Master: in which case you may ignore this message.
+==> Master: Setting hostname...
+==> Master: Configuring and enabling network interfaces...
+==> Master: Rsyncing folder: /Volumes/Development/SelfLearning/OracleDockerK8s/docker-k8s/kmaster/ => /vagrant
+==> Master: Running provisioner: shell...
+    Master: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-5tjddq.sh
+    Master: [TASK 1] Update /etc/hosts file
+    Master: [TASK 2] Install docker container engine
+    Master: [TASK 3] Enable and start docker service
+    Master: [TASK 4] Disable SELinux
+    Master: [TASK 5] Stop and Disable firewalld
+    Master: [TASK 6] Add sysctl settings
+    Master: [TASK 7] Disable and turn off SWAP
+    Master: [TASK 8] Add yum repo file for kubernetes
+    Master: [TASK 9] Install Kubernetes (kubeadm, kubelet and kubectl)
+    Master: [TASK 10] Enable and start kubelet service
+    Master: [TASK 11] Enable ssh password authentication
+    Master: [TASK 12] Set root password
+==> Master: Running provisioner: shell...
+    Master: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-6nt3e3.sh
+    Master: [TASK 1] Initialize Kubernetes Cluster
+    Master: [TASK 2] Copy kube admin config to Vagrant user .kube directory
+    Master: [TASK 3] Deploy Calico network
+    Master: configmap/calico-config created
+    Master: customresourcedefinition.apiextensions.k8s.io/felixconfigurations.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/ipamblocks.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/blockaffinities.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/ipamhandles.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/ipamconfigs.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/bgppeers.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/bgpconfigurations.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/ippools.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/hostendpoints.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/clusterinformations.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/globalnetworkpolicies.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/globalnetworksets.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/networkpolicies.crd.projectcalico.org created
+    Master: customresourcedefinition.apiextensions.k8s.io/networksets.crd.projectcalico.org created
+    Master: clusterrole.rbac.authorization.k8s.io/calico-kube-controllers created
+    Master: clusterrolebinding.rbac.authorization.k8s.io/calico-kube-controllers created
+    Master: clusterrole.rbac.authorization.k8s.io/calico-node created
+    Master: clusterrolebinding.rbac.authorization.k8s.io/calico-node created
+    Master: daemonset.apps/calico-node created
+    Master: serviceaccount/calico-node created
+    Master: deployment.apps/calico-kube-controllers created
+    Master: serviceaccount/calico-kube-controllers created
+    Master: [TASK 4] Generate and save cluster join command to /joincluster.sh
+    Master: W0819 15:37:17.992562    5343 configset.go:202] WARNING: kubeadm cannot validate component configs for API groups [kubelet.config.k8s.io kubeproxy.config.k8s.io]
+    Master: [TASK 5] Install ssh so that we can access using putty
+    Master: Loaded plugins: fastestmirror
+    Master: ● sshd.service - OpenSSH server daemon
+    Master:    Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+    Master:    Active: active (running) since Wed 2020-08-19 15:33:22 UTC; 3min 55s ago
+    Master:      Docs: man:sshd(8)
+    Master:            man:sshd_config(5)
+    Master:  Main PID: 614 (sshd)
+    Master:     Tasks: 1
+    Master:    Memory: 1.0M
+    Master:    CGroup: /system.slice/sshd.service
+    Master:            └─614 /usr/sbin/sshd -D -u0
+    Master: 
+    Master: Aug 19 15:33:22 localhost.localdomain sshd[614]: Server listening on :: port 22.
+    Master: Aug 19 15:33:22 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+    Master: Aug 19 15:33:30 localhost.localdomain sshd[943]: Accepted publickey for vagrant from 10.0.2.2 port 51773 ssh2: RSA SHA256:1M4RzhMyWuFS/86uPY/ce2prh/dVTHW7iD2RhpquOZA
+    Master: Aug 19 15:33:35 localhost.localdomain sshd[1545]: Accepted publickey for vagrant from 10.0.2.2 port 51775 ssh2: RSA SHA256:zW+WrF2hizGx55oSdkwSElJNXH6WwPgsrifYU83nNFA
+    Master: Aug 19 15:33:39 Master sshd[2891]: Accepted publickey for vagrant from 10.0.2.2 port 51776 ssh2: RSA SHA256:zW+WrF2hizGx55oSdkwSElJNXH6WwPgsrifYU83nNFA
+    Master: Aug 19 15:35:13 Master systemd[1]: Reloading OpenSSH server daemon.
+    Master: Aug 19 15:35:13 Master sshd[614]: Received SIGHUP; restarting.
+    Master: Aug 19 15:35:13 Master systemd[1]: Reloaded OpenSSH server daemon.
+    Master: Aug 19 15:35:13 Master sshd[614]: Server listening on 0.0.0.0 port 22.
+    Master: Aug 19 15:35:13 Master sshd[614]: Server listening on :: port 22.
+==> Worker1: Importing base box 'centos/7'...
+==> Worker1: Matching MAC address for NAT networking...
+==> Worker1: Checking if box 'centos/7' version '2004.01' is up to date...
+==> Worker1: Setting the name of the VM: Worker1
+==> Worker1: Clearing any previously set network interfaces...
+==> Worker1: Preparing network interfaces based on configuration...
+    Worker1: Adapter 1: nat
+    Worker1: Adapter 2: hostonly
+==> Worker1: Forwarding ports...
+    Worker1: 22 (guest) => 2222 (host) (adapter 1)
+==> Worker1: Running 'pre-boot' VM customizations...
+==> Worker1: Booting VM...
+==> Worker1: Waiting for machine to boot. This may take a few minutes...
+    Worker1: SSH address: 127.0.0.1:2222
+    Worker1: SSH username: vagrant
+    Worker1: SSH auth method: private key
+    Worker1: 
+    Worker1: Vagrant insecure key detected. Vagrant will automatically replace
+    Worker1: this with a newly generated keypair for better security.
+    Worker1: 
+    Worker1: Inserting generated public key within guest...
+    Worker1: Removing insecure key from the guest if it's present...
+    Worker1: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> Worker1: Machine booted and ready!
+==> Worker1: Checking for guest additions in VM...
+    Worker1: No guest additions were detected on the base box for this VM! Guest
+    Worker1: additions are required for forwarded ports, shared folders, host only
+    Worker1: networking, and more. If SSH fails on this machine, please install
+    Worker1: the guest additions and repackage the box to continue.
+    Worker1: 
+    Worker1: This is not an error message; everything may continue to work properly,
+    Worker1: in which case you may ignore this message.
+==> Worker1: Setting hostname...
+==> Worker1: Configuring and enabling network interfaces...
+==> Worker1: Rsyncing folder: /Volumes/Development/SelfLearning/OracleDockerK8s/docker-k8s/kmaster/ => /vagrant
+==> Worker1: Running provisioner: shell...
+    Worker1: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-pp5ufh.sh
+    Worker1: [TASK 1] Update /etc/hosts file
+    Worker1: [TASK 2] Install docker container engine
+    Worker1: [TASK 3] Enable and start docker service
+    Worker1: [TASK 4] Disable SELinux
+    Worker1: [TASK 5] Stop and Disable firewalld
+    Worker1: [TASK 6] Add sysctl settings
+    Worker1: [TASK 7] Disable and turn off SWAP
+    Worker1: [TASK 8] Add yum repo file for kubernetes
+    Worker1: [TASK 9] Install Kubernetes (kubeadm, kubelet and kubectl)
+    Worker1: [TASK 10] Enable and start kubelet service
+    Worker1: [TASK 11] Enable ssh password authentication
+    Worker1: [TASK 12] Set root password
+==> Worker1: Running provisioner: shell...
+    Worker1: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-1h7cmqh.sh
+    Worker1: [TASK 1] Join node to Kubernetes Cluster
+    Worker1: [TASK 5] Install ssh so that we can access using putty
+    Worker1: Loaded plugins: fastestmirror
+    Worker1: ● sshd.service - OpenSSH server daemon
+    Worker1:    Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+    Worker1:    Active: active (running) since Wed 2020-08-19 15:37:35 UTC; 3min 2s ago
+    Worker1:      Docs: man:sshd(8)
+    Worker1:            man:sshd_config(5)
+    Worker1:   Process: 3641 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCESS)
+    Worker1:  Main PID: 676 (sshd)
+    Worker1:     Tasks: 1
+    Worker1:    Memory: 1.0M
+    Worker1:    CGroup: /system.slice/sshd.service
+    Worker1:            └─676 /usr/sbin/sshd -D -u0
+    Worker1: 
+    Worker1: Aug 19 15:37:35 localhost.localdomain sshd[676]: Server listening on :: port 22.
+    Worker1: Aug 19 15:37:35 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+    Worker1: Aug 19 15:37:39 localhost.localdomain sshd[942]: Accepted publickey for vagrant from 10.0.2.2 port 51983 ssh2: RSA SHA256:1M4RzhMyWuFS/86uPY/ce2prh/dVTHW7iD2RhpquOZA
+    Worker1: Aug 19 15:37:44 localhost.localdomain sshd[1543]: Accepted publickey for vagrant from 10.0.2.2 port 51984 ssh2: RSA SHA256:zoWADXuNs/0EcH3RLu2dyXIcMKqOY8pbQ2gh8b3FO78
+    Worker1: Aug 19 15:37:47 Worker1 sshd[2879]: Accepted publickey for vagrant from 10.0.2.2 port 51986 ssh2: RSA SHA256:zoWADXuNs/0EcH3RLu2dyXIcMKqOY8pbQ2gh8b3FO78
+    Worker1: Aug 19 15:40:31 Worker1 systemd[1]: Reloading OpenSSH server daemon.
+    Worker1: Aug 19 15:40:31 Worker1 systemd[1]: Reloaded OpenSSH server daemon.
+    Worker1: Aug 19 15:40:31 Worker1 sshd[676]: Received SIGHUP; restarting.
+    Worker1: Aug 19 15:40:31 Worker1 sshd[676]: Server listening on 0.0.0.0 port 22.
+    Worker1: Aug 19 15:40:31 Worker1 sshd[676]: Server listening on :: port 22.
+==> Worker2: Importing base box 'centos/7'...
+==> Worker2: Matching MAC address for NAT networking...
+==> Worker2: Checking if box 'centos/7' version '2004.01' is up to date...
+==> Worker2: Setting the name of the VM: Worker2
+==> Worker2: Fixed port collision for 22 => 2222. Now on port 2201.
+==> Worker2: Clearing any previously set network interfaces...
+==> Worker2: Preparing network interfaces based on configuration...
+    Worker2: Adapter 1: nat
+    Worker2: Adapter 2: hostonly
+==> Worker2: Forwarding ports...
+    Worker2: 22 (guest) => 2201 (host) (adapter 1)
+==> Worker2: Running 'pre-boot' VM customizations...
+==> Worker2: Booting VM...
+==> Worker2: Waiting for machine to boot. This may take a few minutes...
+    Worker2: SSH address: 127.0.0.1:2201
+    Worker2: SSH username: vagrant
+    Worker2: SSH auth method: private key
+    Worker2: 
+    Worker2: Vagrant insecure key detected. Vagrant will automatically replace
+    Worker2: this with a newly generated keypair for better security.
+    Worker2: 
+    Worker2: Inserting generated public key within guest...
+    Worker2: Removing insecure key from the guest if it's present...
+    Worker2: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> Worker2: Machine booted and ready!
+==> Worker2: Checking for guest additions in VM...
+    Worker2: No guest additions were detected on the base box for this VM! Guest
+    Worker2: additions are required for forwarded ports, shared folders, host only
+    Worker2: networking, and more. If SSH fails on this machine, please install
+    Worker2: the guest additions and repackage the box to continue.
+    Worker2: 
+    Worker2: This is not an error message; everything may continue to work properly,
+    Worker2: in which case you may ignore this message.
+==> Worker2: Setting hostname...
+==> Worker2: Configuring and enabling network interfaces...
+==> Worker2: Rsyncing folder: /Volumes/Development/SelfLearning/OracleDockerK8s/docker-k8s/kmaster/ => /vagrant
+==> Worker2: Running provisioner: shell...
+    Worker2: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-lk3mxh.sh
+    Worker2: [TASK 1] Update /etc/hosts file
+    Worker2: [TASK 2] Install docker container engine
+    Worker2: [TASK 3] Enable and start docker service
+    Worker2: [TASK 4] Disable SELinux
+    Worker2: [TASK 5] Stop and Disable firewalld
+    Worker2: [TASK 6] Add sysctl settings
+    Worker2: [TASK 7] Disable and turn off SWAP
+    Worker2: [TASK 8] Add yum repo file for kubernetes
+    Worker2: [TASK 9] Install Kubernetes (kubeadm, kubelet and kubectl)
+    Worker2: [TASK 10] Enable and start kubelet service
+    Worker2: [TASK 11] Enable ssh password authentication
+    Worker2: [TASK 12] Set root password
+==> Worker2: Running provisioner: shell...
+    Worker2: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-hhlb4.sh
+    Worker2: [TASK 1] Join node to Kubernetes Cluster
+    Worker2: [TASK 5] Install ssh so that we can access using putty
+    Worker2: Loaded plugins: fastestmirror
+    Worker2: ● sshd.service - OpenSSH server daemon
+    Worker2:    Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+    Worker2:    Active: active (running) since Wed 2020-08-19 15:40:55 UTC; 2min 4s ago
+    Worker2:      Docs: man:sshd(8)
+    Worker2:            man:sshd_config(5)
+    Worker2:   Process: 3650 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCESS)
+    Worker2:  Main PID: 681 (sshd)
+    Worker2:     Tasks: 3
+    Worker2:    Memory: 1.0M
+    Worker2:    CGroup: /system.slice/sshd.service
+    Worker2:            ├─ 681 /usr/sbin/sshd -D -u0
+    Worker2:            ├─2197 sshd: [accepted]        
+    Worker2:            └─2202 sshd: [net]             
+    Worker2: 
+    Worker2: Aug 19 15:40:55 localhost.localdomain sshd[681]: Server listening on :: port 22.
+    Worker2: Aug 19 15:40:55 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+    Worker2: Aug 19 15:40:59 localhost.localdomain sshd[955]: Accepted publickey for vagrant from 10.0.2.2 port 52124 ssh2: RSA SHA256:1M4RzhMyWuFS/86uPY/ce2prh/dVTHW7iD2RhpquOZA
+    Worker2: Aug 19 15:41:03 localhost.localdomain sshd[1557]: Accepted publickey for vagrant from 10.0.2.2 port 52126 ssh2: RSA SHA256:wUz7Yrxh9//5Xp/2GfnHhFrombkzOa1NMRnclIzNCt8
+    Worker2: Aug 19 15:41:07 Worker2 sshd[2894]: Accepted publickey for vagrant from 10.0.2.2 port 52127 ssh2: RSA SHA256:wUz7Yrxh9//5Xp/2GfnHhFrombkzOa1NMRnclIzNCt8
+    Worker2: Aug 19 15:42:55 Worker2 systemd[1]: Reloading OpenSSH server daemon.
+    Worker2: Aug 19 15:42:55 Worker2 systemd[1]: Reloaded OpenSSH server daemon.
+    Worker2: Aug 19 15:42:55 Worker2 sshd[681]: Received SIGHUP; restarting.
+    Worker2: Aug 19 15:42:55 Worker2 sshd[681]: Server listening on 0.0.0.0 port 22.
+    Worker2: Aug 19 15:42:55 Worker2 sshd[681]: Server listening on :: port 22.
+==> Worker3: Importing base box 'centos/7'...
+==> Worker3: Matching MAC address for NAT networking...
+==> Worker3: Checking if box 'centos/7' version '2004.01' is up to date...
+==> Worker3: Setting the name of the VM: Worker3
+==> Worker3: Fixed port collision for 22 => 2222. Now on port 2202.
+==> Worker3: Clearing any previously set network interfaces...
+==> Worker3: Preparing network interfaces based on configuration...
+    Worker3: Adapter 1: nat
+    Worker3: Adapter 2: hostonly
+==> Worker3: Forwarding ports...
+    Worker3: 22 (guest) => 2202 (host) (adapter 1)
+==> Worker3: Running 'pre-boot' VM customizations...
+==> Worker3: Booting VM...
+==> Worker3: Waiting for machine to boot. This may take a few minutes...
+    Worker3: SSH address: 127.0.0.1:2202
+    Worker3: SSH username: vagrant
+    Worker3: SSH auth method: private key
+    Worker3: 
+    Worker3: Vagrant insecure key detected. Vagrant will automatically replace
+    Worker3: this with a newly generated keypair for better security.
+    Worker3: 
+    Worker3: Inserting generated public key within guest...
+    Worker3: Removing insecure key from the guest if it's present...
+    Worker3: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> Worker3: Machine booted and ready!
+==> Worker3: Checking for guest additions in VM...
+    Worker3: No guest additions were detected on the base box for this VM! Guest
+    Worker3: additions are required for forwarded ports, shared folders, host only
+    Worker3: networking, and more. If SSH fails on this machine, please install
+    Worker3: the guest additions and repackage the box to continue.
+    Worker3: 
+    Worker3: This is not an error message; everything may continue to work properly,
+    Worker3: in which case you may ignore this message.
+==> Worker3: Setting hostname...
+==> Worker3: Configuring and enabling network interfaces...
+==> Worker3: Rsyncing folder: /Volumes/Development/SelfLearning/OracleDockerK8s/docker-k8s/kmaster/ => /vagrant
+==> Worker3: Running provisioner: shell...
+    Worker3: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-256z89.sh
+    Worker3: [TASK 1] Update /etc/hosts file
+    Worker3: [TASK 2] Install docker container engine
+    Worker3: [TASK 3] Enable and start docker service
+    Worker3: [TASK 4] Disable SELinux
+    Worker3: [TASK 5] Stop and Disable firewalld
+    Worker3: [TASK 6] Add sysctl settings
+    Worker3: [TASK 7] Disable and turn off SWAP
+    Worker3: [TASK 8] Add yum repo file for kubernetes
+    Worker3: [TASK 9] Install Kubernetes (kubeadm, kubelet and kubectl)
+    Worker3: [TASK 10] Enable and start kubelet service
+    Worker3: [TASK 11] Enable ssh password authentication
+    Worker3: [TASK 12] Set root password
+==> Worker3: Running provisioner: shell...
+    Worker3: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-yi8d8s.sh
+    Worker3: [TASK 1] Join node to Kubernetes Cluster
+    Worker3: [TASK 5] Install ssh so that we can access using putty
+    Worker3: Loaded plugins: fastestmirror
+    Worker3: ● sshd.service - OpenSSH server daemon
+    Worker3:    Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+    Worker3:    Active: active (running) since Wed 2020-08-19 15:43:16 UTC; 1min 54s ago
+    Worker3:      Docs: man:sshd(8)
+    Worker3:            man:sshd_config(5)
+    Worker3:   Process: 3639 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCESS)
+    Worker3:  Main PID: 672 (sshd)
+    Worker3:     Tasks: 3
+    Worker3:    Memory: 1.0M
+    Worker3:    CGroup: /system.slice/sshd.service
+    Worker3:            ├─ 672 /usr/sbin/sshd -D -u0
+    Worker3:            ├─2665 sshd: [accepted]        
+    Worker3:            └─2666 sshd: [net]             
+    Worker3: 
+    Worker3: Aug 19 15:43:16 localhost.localdomain sshd[672]: Server listening on :: port 22.
+    Worker3: Aug 19 15:43:16 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+    Worker3: Aug 19 15:43:21 localhost.localdomain sshd[948]: Accepted publickey for vagrant from 10.0.2.2 port 52210 ssh2: RSA SHA256:1M4RzhMyWuFS/86uPY/ce2prh/dVTHW7iD2RhpquOZA
+    Worker3: Aug 19 15:43:25 localhost.localdomain sshd[1549]: Accepted publickey for vagrant from 10.0.2.2 port 52211 ssh2: RSA SHA256:tudoZybuQ+3eogvNnD7sTyWrgzNTM5FeGPOLU8V5uCA
+    Worker3: Aug 19 15:43:28 Worker3 sshd[2885]: Accepted publickey for vagrant from 10.0.2.2 port 52214 ssh2: RSA SHA256:tudoZybuQ+3eogvNnD7sTyWrgzNTM5FeGPOLU8V5uCA
+    Worker3: Aug 19 15:45:07 Worker3 systemd[1]: Reloading OpenSSH server daemon.
+    Worker3: Aug 19 15:45:07 Worker3 systemd[1]: Reloaded OpenSSH server daemon.
+    Worker3: Aug 19 15:45:07 Worker3 sshd[672]: Received SIGHUP; restarting.
+    Worker3: Aug 19 15:45:07 Worker3 sshd[672]: Server listening on 0.0.0.0 port 22.
+    Worker3: Aug 19 15:45:07 Worker3 sshd[672]: Server listening on :: port 22.
+==> Worker4: Importing base box 'centos/7'...
+==> Worker4: Matching MAC address for NAT networking...
+==> Worker4: Checking if box 'centos/7' version '2004.01' is up to date...
+==> Worker4: Setting the name of the VM: Worker4
+==> Worker4: Fixed port collision for 22 => 2222. Now on port 2203.
+==> Worker4: Clearing any previously set network interfaces...
+==> Worker4: Preparing network interfaces based on configuration...
+    Worker4: Adapter 1: nat
+    Worker4: Adapter 2: hostonly
+==> Worker4: Forwarding ports...
+    Worker4: 22 (guest) => 2203 (host) (adapter 1)
+==> Worker4: Running 'pre-boot' VM customizations...
+==> Worker4: Booting VM...
+==> Worker4: Waiting for machine to boot. This may take a few minutes...
+    Worker4: SSH address: 127.0.0.1:2203
+    Worker4: SSH username: vagrant
+    Worker4: SSH auth method: private key
+    Worker4: 
+    Worker4: Vagrant insecure key detected. Vagrant will automatically replace
+    Worker4: this with a newly generated keypair for better security.
+    Worker4: 
+    Worker4: Inserting generated public key within guest...
+    Worker4: Removing insecure key from the guest if it's present...
+    Worker4: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> Worker4: Machine booted and ready!
+==> Worker4: Checking for guest additions in VM...
+    Worker4: No guest additions were detected on the base box for this VM! Guest
+    Worker4: additions are required for forwarded ports, shared folders, host only
+    Worker4: networking, and more. If SSH fails on this machine, please install
+    Worker4: the guest additions and repackage the box to continue.
+    Worker4: 
+    Worker4: This is not an error message; everything may continue to work properly,
+    Worker4: in which case you may ignore this message.
+==> Worker4: Setting hostname...
+==> Worker4: Configuring and enabling network interfaces...
+==> Worker4: Rsyncing folder: /Volumes/Development/SelfLearning/OracleDockerK8s/docker-k8s/kmaster/ => /vagrant
+==> Worker4: Running provisioner: shell...
+    Worker4: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-1x0edct.sh
+    Worker4: [TASK 1] Update /etc/hosts file
+    Worker4: [TASK 2] Install docker container engine
+    Worker4: [TASK 3] Enable and start docker service
+    Worker4: [TASK 4] Disable SELinux
+    Worker4: [TASK 5] Stop and Disable firewalld
+    Worker4: [TASK 6] Add sysctl settings
+    Worker4: [TASK 7] Disable and turn off SWAP
+    Worker4: [TASK 8] Add yum repo file for kubernetes
+    Worker4: [TASK 9] Install Kubernetes (kubeadm, kubelet and kubectl)
+    Worker4: [TASK 10] Enable and start kubelet service
+    Worker4: [TASK 11] Enable ssh password authentication
+    Worker4: [TASK 12] Set root password
+==> Worker4: Running provisioner: shell...
+    Worker4: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-161xthc.sh
+    Worker4: [TASK 1] Join node to Kubernetes Cluster
+    Worker4: [TASK 5] Install ssh so that we can access using putty
+    Worker4: Loaded plugins: fastestmirror
+    Worker4: ● sshd.service - OpenSSH server daemon
+    Worker4:    Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+    Worker4:    Active: active (running) since Wed 2020-08-19 15:45:28 UTC; 1min 54s ago
+    Worker4:      Docs: man:sshd(8)
+    Worker4:            man:sshd_config(5)
+    Worker4:   Process: 3630 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCESS)
+    Worker4:  Main PID: 673 (sshd)
+    Worker4:     Tasks: 3
+    Worker4:    Memory: 1.0M
+    Worker4:    CGroup: /system.slice/sshd.service
+    Worker4:            ├─ 673 /usr/sbin/sshd -D -u0
+    Worker4:            ├─2386 sshd: [accepted]        
+    Worker4:            └─2394 sshd: [net]             
+    Worker4: 
+    Worker4: Aug 19 15:45:27 localhost.localdomain sshd[673]: Server listening on :: port 22.
+    Worker4: Aug 19 15:45:28 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+    Worker4: Aug 19 15:45:32 localhost.localdomain sshd[938]: Accepted publickey for vagrant from 10.0.2.2 port 52289 ssh2: RSA SHA256:1M4RzhMyWuFS/86uPY/ce2prh/dVTHW7iD2RhpquOZA
+    Worker4: Aug 19 15:45:36 localhost.localdomain sshd[1539]: Accepted publickey for vagrant from 10.0.2.2 port 52291 ssh2: RSA SHA256:epctI7fGG3RkqQixd6ya1Smj2yxotg6k2wPREB5a+Is
+    Worker4: Aug 19 15:45:40 Worker4 sshd[2876]: Accepted publickey for vagrant from 10.0.2.2 port 52292 ssh2: RSA SHA256:epctI7fGG3RkqQixd6ya1Smj2yxotg6k2wPREB5a+Is
+    Worker4: Aug 19 15:47:20 Worker4 systemd[1]: Reloading OpenSSH server daemon.
+    Worker4: Aug 19 15:47:20 Worker4 systemd[1]: Reloaded OpenSSH server daemon.
+    Worker4: Aug 19 15:47:20 Worker4 sshd[673]: Received SIGHUP; restarting.
+    Worker4: Aug 19 15:47:20 Worker4 sshd[673]: Server listening on 0.0.0.0 port 22.
+    Worker4: Aug 19 15:47:20 Worker4 sshd[673]: Server listening on :: port 22.
+==> Worker5: Importing base box 'centos/7'...
+==> Worker5: Matching MAC address for NAT networking...
+==> Worker5: Checking if box 'centos/7' version '2004.01' is up to date...
+==> Worker5: Setting the name of the VM: Worker5
+==> Worker5: Fixed port collision for 22 => 2222. Now on port 2204.
+==> Worker5: Clearing any previously set network interfaces...
+==> Worker5: Preparing network interfaces based on configuration...
+    Worker5: Adapter 1: nat
+    Worker5: Adapter 2: hostonly
+==> Worker5: Forwarding ports...
+    Worker5: 22 (guest) => 2204 (host) (adapter 1)
+==> Worker5: Running 'pre-boot' VM customizations...
+==> Worker5: Booting VM...
+==> Worker5: Waiting for machine to boot. This may take a few minutes...
+    Worker5: SSH address: 127.0.0.1:2204
+    Worker5: SSH username: vagrant
+    Worker5: SSH auth method: private key
+    Worker5: 
+    Worker5: Vagrant insecure key detected. Vagrant will automatically replace
+    Worker5: this with a newly generated keypair for better security.
+    Worker5: 
+    Worker5: Inserting generated public key within guest...
+    Worker5: Removing insecure key from the guest if it's present...
+    Worker5: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> Worker5: Machine booted and ready!
+==> Worker5: Checking for guest additions in VM...
+    Worker5: No guest additions were detected on the base box for this VM! Guest
+    Worker5: additions are required for forwarded ports, shared folders, host only
+    Worker5: networking, and more. If SSH fails on this machine, please install
+    Worker5: the guest additions and repackage the box to continue.
+    Worker5: 
+    Worker5: This is not an error message; everything may continue to work properly,
+    Worker5: in which case you may ignore this message.
+==> Worker5: Setting hostname...
+==> Worker5: Configuring and enabling network interfaces...
+==> Worker5: Rsyncing folder: /Volumes/Development/SelfLearning/OracleDockerK8s/docker-k8s/kmaster/ => /vagrant
+==> Worker5: Running provisioner: shell...
+    Worker5: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-7vgmo5.sh
+    Worker5: [TASK 1] Update /etc/hosts file
+    Worker5: [TASK 2] Install docker container engine
+    Worker5: [TASK 3] Enable and start docker service
+    Worker5: [TASK 4] Disable SELinux
+    Worker5: [TASK 5] Stop and Disable firewalld
+    Worker5: [TASK 6] Add sysctl settings
+    Worker5: [TASK 7] Disable and turn off SWAP
+    Worker5: [TASK 8] Add yum repo file for kubernetes
+    Worker5: [TASK 9] Install Kubernetes (kubeadm, kubelet and kubectl)
+    Worker5: [TASK 10] Enable and start kubelet service
+    Worker5: [TASK 11] Enable ssh password authentication
+    Worker5: [TASK 12] Set root password
+==> Worker5: Running provisioner: shell...
+    Worker5: Running: /var/folders/zz/zyxvpxvq6csfxvn_n0000000000000/T/vagrant-shell20200819-13773-1hbdonr.sh
+    Worker5: [TASK 1] Join node to Kubernetes Cluster
+    Worker5: [TASK 5] Install ssh so that we can access using putty
+    Worker5: Loaded plugins: fastestmirror
+    Worker5: ● sshd.service - OpenSSH server daemon
+    Worker5:    Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+    Worker5:    Active: active (running) since Wed 2020-08-19 15:47:39 UTC; 2min 0s ago
+    Worker5:      Docs: man:sshd(8)
+    Worker5:            man:sshd_config(5)
+    Worker5:   Process: 3638 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCESS)
+    Worker5:  Main PID: 675 (sshd)
+    Worker5:     Tasks: 3
+    Worker5:    Memory: 1.0M
+    Worker5:    CGroup: /system.slice/sshd.service
+    Worker5:            ├─ 675 /usr/sbin/sshd -D -u0
+    Worker5:            ├─2361 sshd: [accepted]        
+    Worker5:            └─2363 sshd: [net]             
+    Worker5: 
+    Worker5: Aug 19 15:47:39 localhost.localdomain sshd[675]: Server listening on :: port 22.
+    Worker5: Aug 19 15:47:39 localhost.localdomain systemd[1]: Started OpenSSH server daemon.
+    Worker5: Aug 19 15:47:44 localhost.localdomain sshd[941]: Accepted publickey for vagrant from 10.0.2.2 port 52391 ssh2: RSA SHA256:1M4RzhMyWuFS/86uPY/ce2prh/dVTHW7iD2RhpquOZA
+    Worker5: Aug 19 15:47:48 localhost.localdomain sshd[1543]: Accepted publickey for vagrant from 10.0.2.2 port 52392 ssh2: RSA SHA256:UTIBkBCY2VRgD4kX1Or35iP/l/uh17HSI7duYl6D39g
+    Worker5: Aug 19 15:47:51 Worker5 sshd[2880]: Accepted publickey for vagrant from 10.0.2.2 port 52393 ssh2: RSA SHA256:UTIBkBCY2VRgD4kX1Or35iP/l/uh17HSI7duYl6D39g
+    Worker5: Aug 19 15:49:33 Worker5 systemd[1]: Reloading OpenSSH server daemon.
+    Worker5: Aug 19 15:49:33 Worker5 systemd[1]: Reloaded OpenSSH server daemon.
+    Worker5: Aug 19 15:49:33 Worker5 sshd[675]: Received SIGHUP; restarting.
+    Worker5: Aug 19 15:49:33 Worker5 sshd[675]: Server listening on 0.0.0.0 port 22.
+    Worker5: Aug 19 15:49:33 Worker5 sshd[675]: Server listening on :: port 22.
+
+    >> Done
+
+asprabhu@Ashwins-MacBook-Pro kmaster % ping 192.168.56.130
+PING 192.168.56.130 (192.168.56.130): 56 data bytes
+64 bytes from 192.168.56.130: icmp_seq=0 ttl=64 time=0.688 ms
+64 bytes from 192.168.56.130: icmp_seq=1 ttl=64 time=0.374 ms
+64 bytes from 192.168.56.130: icmp_seq=2 ttl=64 time=0.280 ms
+64 bytes from 192.168.56.130: icmp_seq=3 ttl=64 time=0.256 ms
+^C
+--- 192.168.56.130 ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.256/0.399/0.688/0.172 ms
+asprabhu@Ashwins-MacBook-Pro kmaster % ping 192.168.56.131
+PING 192.168.56.131 (192.168.56.131): 56 data bytes
+64 bytes from 192.168.56.131: icmp_seq=0 ttl=64 time=0.379 ms
+64 bytes from 192.168.56.131: icmp_seq=1 ttl=64 time=0.310 ms
+^C
+--- 192.168.56.131 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.310/0.345/0.379/0.034 ms
+asprabhu@Ashwins-MacBook-Pro kmaster % ping 192.168.56.132
+PING 192.168.56.132 (192.168.56.132): 56 data bytes
+64 bytes from 192.168.56.132: icmp_seq=0 ttl=64 time=0.389 ms
+64 bytes from 192.168.56.132: icmp_seq=1 ttl=64 time=0.372 ms
+^C
+--- 192.168.56.132 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.372/0.381/0.389/0.008 ms
+asprabhu@Ashwins-MacBook-Pro kmaster % ping 192.168.56.133
+PING 192.168.56.133 (192.168.56.133): 56 data bytes
+64 bytes from 192.168.56.133: icmp_seq=0 ttl=64 time=0.361 ms
+64 bytes from 192.168.56.133: icmp_seq=1 ttl=64 time=0.347 ms
+64 bytes from 192.168.56.133: icmp_seq=2 ttl=64 time=0.327 ms
+^C
+--- 192.168.56.133 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.327/0.345/0.361/0.014 ms
+asprabhu@Ashwins-MacBook-Pro kmaster % ping 192.168.56.134
+PING 192.168.56.134 (192.168.56.134): 56 data bytes
+64 bytes from 192.168.56.134: icmp_seq=0 ttl=64 time=0.402 ms
+64 bytes from 192.168.56.134: icmp_seq=1 ttl=64 time=0.324 ms
+64 bytes from 192.168.56.134: icmp_seq=2 ttl=64 time=0.287 ms
+^C
+--- 192.168.56.134 ping statistics ---
+3 packets transmitted, 3 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.287/0.338/0.402/0.048 ms
+asprabhu@Ashwins-MacBook-Pro kmaster % ping 192.168.56.135
+PING 192.168.56.135 (192.168.56.135): 56 data bytes
+64 bytes from 192.168.56.135: icmp_seq=0 ttl=64 time=0.386 ms
+64 bytes from 192.168.56.135: icmp_seq=1 ttl=64 time=0.418 ms
+64 bytes from 192.168.56.135: icmp_seq=2 ttl=64 time=0.287 ms
+^C
+--- 192.168.56.135 ping statistics ---
+
+
+
+
+
+asprabhu@Ashwins-MacBook-Pro kmaster % ssh vagrant@192.168.56.130                                              
+The authenticity of host '192.168.56.130 (192.168.56.130)' can't be established.
+ECDSA key fingerprint is SHA256:gO64L91HTrrLOsTh0nXG5K577B7TSwBUYcWQvkyaFGw.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.130' (ECDSA) to the list of known hosts.
+vagrant@192.168.56.130's password: 
+Last login: Wed Aug 19 15:37:16 2020
+[vagrant@Master ~]$ kubectl get pods
+No resources found in default namespace.
+[vagrant@Master ~]$ sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.hbcse.tifr.res.in
+ * extras: centos.hbcse.tifr.res.in
+ * updates: centos.hbcse.tifr.res.in
+Package kubelet-1.18.8-0.x86_64 already installed and latest version
+Package kubeadm-1.18.8-0.x86_64 already installed and latest version
+Package kubectl-1.18.8-0.x86_64 already installed and latest version
+Nothing to do
+[vagrant@Master ~]$ sudo su
+[root@Master vagrant]# systemctl enable kubelet && systemctl start kubelet
+[root@Master vagrant]# ifconfig | grep inet
+bash: ifconfig: command not found
+[root@Master vagrant]# systemctl enable kubelet && systemctl start kubelet^C
+[root@Master vagrant]# exit
+exit
+[vagrant@Master ~]$ exit
+logout
+Connection to 192.168.56.130 closed.
+asprabhu@Ashwins-MacBook-Pro kmaster % ssh vagrant@192.168.56.131
+The authenticity of host '192.168.56.131 (192.168.56.131)' can't be established.
+ECDSA key fingerprint is SHA256:zmWYxXuHJfqChqFdP7uk+z6/ZoIizilbPAJiNsJmWtA.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.131' (ECDSA) to the list of known hosts.
+vagrant@192.168.56.131's password: 
+[vagrant@Worker1 ~]$     yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+Loaded plugins: fastestmirror
+You need to be root to perform this command.
+[vagrant@Worker1 ~]$ sudo su
+[root@Worker1 vagrant]#     yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.excellmedia.net
+ * extras: centos.excellmedia.net
+ * updates: centos.excellmedia.net
+Package kubelet-1.18.8-0.x86_64 already installed and latest version
+Package kubeadm-1.18.8-0.x86_64 already installed and latest version
+Package kubectl-1.18.8-0.x86_64 already installed and latest version
+Nothing to do
+[root@Worker1 vagrant]#     systemctl enable kubelet && systemctl start kubelet
+
+[root@Worker1 vagrant]# 
+[root@Worker1 vagrant]# exit
+exit
+[vagrant@Worker1 ~]$ exit
+logout
+Connection to 192.168.56.131 closed.
+asprabhu@Ashwins-MacBook-Pro kmaster % ssh vagrant@192.168.56.132
+The authenticity of host '192.168.56.132 (192.168.56.132)' can't be established.
+ECDSA key fingerprint is SHA256:SkhrWhuLOcFyp7+eub2k+QTKkxHyqAcedOhKF5GPj3A.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.132' (ECDSA) to the list of known hosts.
+vagrant@192.168.56.132's password: 
+[vagrant@Worker2 ~]$ sudo su
+[root@Worker2 vagrant]#     systemctl enable kubelet && systemctl start kubelet
+[root@Worker2 vagrant]# exit
+exit
+[vagrant@Worker2 ~]$ exit
+logout
+Connection to 192.168.56.132 closed.
+asprabhu@Ashwins-MacBook-Pro kmaster % ssh vagrant@192.168.56.133
+The authenticity of host '192.168.56.133 (192.168.56.133)' can't be established.
+ECDSA key fingerprint is SHA256:gWbgkVAkoQROiZNmUQOJdYTT31KRySyK4gHoFJzSVNU.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.133' (ECDSA) to the list of known hosts.
+vagrant@192.168.56.133's password: 
+[vagrant@Worker3 ~]$ yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+Loaded plugins: fastestmirror
+You need to be root to perform this command.
+[vagrant@Worker3 ~]$ sudo su
+[root@Worker3 vagrant]# yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.hbcse.tifr.res.in
+ * extras: centos.hbcse.tifr.res.in
+ * updates: centos.hbcse.tifr.res.in
+Package kubelet-1.18.8-0.x86_64 already installed and latest version
+Package kubeadm-1.18.8-0.x86_64 already installed and latest version
+Package kubectl-1.18.8-0.x86_64 already installed and latest version
+Nothing to do
+[root@Worker3 vagrant]# systemctl enable kubelet && systemctl start kubelet
+[root@Worker3 vagrant]# exit
+exit
+[vagrant@Worker3 ~]$ exit
+logout
+Connection to 192.168.56.133 closed.
+asprabhu@Ashwins-MacBook-Pro kmaster % ssh vagrant@192.168.56.134
+The authenticity of host '192.168.56.134 (192.168.56.134)' can't be established.
+ECDSA key fingerprint is SHA256:TWs3Mja8YzuBqEPcN5PLnlaXLGkF2sMrBLXGgc4HN6w.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.134' (ECDSA) to the list of known hosts.
+vagrant@192.168.56.134's password: 
+Permission denied, please try again.
+vagrant@192.168.56.134's password: 
+Last failed login: Wed Aug 19 16:07:05 UTC 2020 from 192.168.56.1 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+[vagrant@Worker4 ~]$ sudo su
+[root@Worker4 vagrant]# yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.hbcse.tifr.res.in
+ * extras: centos.hbcse.tifr.res.in
+ * updates: centos.hbcse.tifr.res.in
+Package kubelet-1.18.8-0.x86_64 already installed and latest version
+Package kubeadm-1.18.8-0.x86_64 already installed and latest version
+Package kubectl-1.18.8-0.x86_64 already installed and latest version
+Nothing to do
+[root@Worker4 vagrant]# systemctl enable kubelet && systemctl start kubelet
+[root@Worker4 vagrant]# exit
+exit
+[vagrant@Worker4 ~]$ exit
+logout
+Connection to 192.168.56.134 closed.
+asprabhu@Ashwins-MacBook-Pro kmaster % ssh vagrant@192.168.56.135
+The authenticity of host '192.168.56.135 (192.168.56.135)' can't be established.
+ECDSA key fingerprint is SHA256:3bKW1niToa1ikHFZU+tJWCFvOhYY6L+zw0mYoHfNe5o.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.135' (ECDSA) to the list of known hosts.
+vagrant@192.168.56.135's password: 
+Permission denied, please try again.
+vagrant@192.168.56.135's password: 
+Last failed login: Wed Aug 19 16:07:45 UTC 2020 from 192.168.56.1 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+[vagrant@Worker5 ~]$ sudo su
+[root@Worker5 vagrant]# yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: centos.hbcse.tifr.res.in
+ * extras: centos.hbcse.tifr.res.in
+ * updates: centos.hbcse.tifr.res.in
+Package kubelet-1.18.8-0.x86_64 already installed and latest version
+Package kubeadm-1.18.8-0.x86_64 already installed and latest version
+Package kubectl-1.18.8-0.x86_64 already installed and latest version
+Nothing to do
+[root@Worker5 vagrant]# systemctl enable kubelet && systemctl start kubelet
+[root@Worker5 vagrant]# exit
+exit
+[vagrant@Worker5 ~]$ exit
+logout
+Connection to 192.168.56.135 closed.

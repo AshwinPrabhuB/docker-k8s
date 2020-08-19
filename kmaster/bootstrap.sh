@@ -3,9 +3,12 @@
 # Update hosts file
 echo "[TASK 1] Update /etc/hosts file"
 cat >>/etc/hosts<<EOF
-192.168.56.130 kmaster kmaster
-192.168.56.131 kworker1 kworker1
-192.168.56.132 kworker2 kworker2
+192.168.56.130 Master Master
+192.168.56.131 Worker1 Worker1
+192.168.56.132 Worker2 Worker2
+192.168.56.133 Worker3 Worker3
+192.168.56.134 Worker4 Worker4
+192.168.56.135 Worker5 Worker5
 EOF
 
 # Install docker from Docker-ce repository
