@@ -1,15 +1,16 @@
-apiVersion: v1
-kind: ReplicationController        
+apiVersion: apps/v1
+kind: ReplicaSet      
 metadata:
   name: kubia                     
 spec:
-  replicas: 3                 
-  selector:                        
-    app: kubia1 
+  replicas: 4                 
+  selector:
+    matchExpressions:
+      - {key: app, operator: In, values: [kubia, kubia1]}                  
   template:                        
     metadata:                      
       labels:                      
-        app: kubia1                 
+        app: kubia                 
     spec:                          
       containers:                  
       - name: kubia                
